@@ -1,0 +1,1221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DomainModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="2.0.0.0" name="ModeloDeDominio" namespace="CapaDominio" showPropertiesCompartment="true" xmlns="http://www.telerik.com/ORM">
+  <orm:orm name="ModeloDeDominio" backend="mssql" default-schema="dbo" xmlns:orm="http://tempuri.org/ORM">
+    <orm:namespace name="CapaDominio" default="true">
+      <orm:class name="Usuario" uniqueId="c17c265d-e5c6-40e1-8f3b-c9c5f970baef">
+        <orm:table name="Usuario" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="IdUsuario" />
+          </orm:key-generator>
+          <orm:single-field field-name="idUsuario" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="idUsuario" property="IdUsuario" behavior="readwrite" uniqueId="65d88647-9925-4536-a456-d0b308616290" type="System.Int32">
+          <orm:column name="idUsuario" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="nombreUsuario" property="NombreUsuario" behavior="readwrite" uniqueId="a5bf07e3-e635-44e1-afcf-310000b9df9e" type="System.String">
+          <orm:column name="nombreUsuario" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="password" property="Password" behavior="readwrite" uniqueId="00d444c8-f0a1-4544-b5ee-2639a1f83dd9" type="System.String">
+          <orm:column name="password" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="nombre" property="Nombre" behavior="readwrite" uniqueId="3d84b32c-a8be-48a9-9914-d886a2564959" type="System.String">
+          <orm:column name="nombre" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="apellido" property="Apellido" behavior="readwrite" uniqueId="312f4d3a-7130-480b-b378-e591a9fdf76f" type="System.String">
+          <orm:column name="apellido" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="rol" property="Rol" behavior="readwrite" uniqueId="25fdfa06-c663-47b2-95c8-eaae837dd8fe" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="rol" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="rol1" property="Rol1" behavior="readwrite" uniqueId="b9c1b7c7-c3b5-4283-967c-d6336a1c23bf" type="CapaDominio.Rol">
+          <orm:reference uniqueId="b352817a-ac82-4f94-8eab-55ced53f66e2" association-name="UsuarioHasRol">
+            <orm:sharedfield name="rol" target-class="CapaDominio.Rol" target-field="idRol" />
+            <orm:constraint name="FK_Usuario_Rol" delete-action="dbdefaultrule" destination-table="Rol" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="inmuebles" property="Inmuebles" behavior="readwrite" uniqueId="3ba447dd-27cd-4e50-8051-70263d803486" type="CapaDominio.Inmueble">
+          <orm:collection element-class="CapaDominio.Inmueble" inverse-field="usuario1" order-by="" uniqueId="34905f63-d4bd-4a75-a563-065c8f4ef7cc" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="TipoOperacion" uniqueId="a0780563-2750-4f75-a652-8e260e524d4d">
+        <orm:table name="TipoOperacion" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="IdTipoOperacion" />
+          </orm:key-generator>
+          <orm:single-field field-name="idTipoOperacion" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="idTipoOperacion" property="IdTipoOperacion" behavior="readwrite" uniqueId="67b824ad-2a61-4716-a99b-8dce958a7f03" type="System.Int32">
+          <orm:column name="idTipoOperacion" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="nombre" property="Nombre" behavior="readwrite" uniqueId="e1fde7d4-427d-4890-8a29-75617834c0ea" type="System.String">
+          <orm:column name="nombre" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="inmueble_TipoOperacions" property="Inmueble_TipoOperacions" behavior="readwrite" uniqueId="f97b7375-cb84-4a2b-8e18-a1ac31ed9961" type="CapaDominio.Inmueble_TipoOperacion">
+          <orm:collection element-class="CapaDominio.Inmueble_TipoOperacion" inverse-field="tipoOperacion" order-by="" uniqueId="24dba0af-3244-4fc0-ba63-890f1d882d2e" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="TipoInmueble" uniqueId="edd0827c-af95-407e-b1eb-ebc8e0d7407b">
+        <orm:table name="TipoInmueble" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="IdTipoInmueble" />
+          </orm:key-generator>
+          <orm:single-field field-name="idTipoInmueble" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="idTipoInmueble" property="IdTipoInmueble" behavior="readwrite" uniqueId="4095b933-6038-44ef-a8de-c93d0feffc5e" type="System.Int32">
+          <orm:column name="idTipoInmueble" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="nombre" property="Nombre" behavior="readwrite" uniqueId="eb0454c1-e608-4a71-9a51-5882b7182848" type="System.String">
+          <orm:column name="nombre" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="inmuebles" property="Inmuebles" behavior="readwrite" uniqueId="8a6d5c13-b96e-4a2f-a4f3-969074f70939" type="CapaDominio.Inmueble">
+          <orm:collection element-class="CapaDominio.Inmueble" inverse-field="tipoInmueble1" order-by="" uniqueId="60e1654e-8361-43b7-8cb5-f811987e6108" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="TipoEstado" uniqueId="a125d29f-b624-4388-a0ef-915f0a2b51e3">
+        <orm:table name="TipoEstado" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="IdTipoEstado" />
+          </orm:key-generator>
+          <orm:single-field field-name="idTipoEstado" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="idTipoEstado" property="IdTipoEstado" behavior="readwrite" uniqueId="fd94e734-b4da-4cfb-b32a-226c74efd6e4" type="System.Int32">
+          <orm:column name="idTipoEstado" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="tipoEstado1" property="TipoEstado1" behavior="readwrite" uniqueId="388ea6be-5f0c-4c85-a341-341369635d72" type="System.String">
+          <orm:column name="tipoEstado" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="inmuebles" property="Inmuebles" behavior="readwrite" uniqueId="eeafda17-ba44-4a8d-853c-143340b3320b" type="CapaDominio.Inmueble">
+          <orm:collection element-class="CapaDominio.Inmueble" inverse-field="tipoEstado1" order-by="" uniqueId="9f843d6f-cb44-47c9-a3ee-42dd4a03ee03" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="TipoCaracteristica" uniqueId="9fdeea38-427c-4e03-8600-8e06d46f0801">
+        <orm:table name="TipoCaracteristica" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="IdTipoCaracteristica" />
+          </orm:key-generator>
+          <orm:single-field field-name="idTipoCaracteristica" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="idTipoCaracteristica" property="IdTipoCaracteristica" behavior="readwrite" uniqueId="4f95061f-83e5-403d-9052-6bfbeec00a10" type="System.Int32">
+          <orm:column name="idTipoCaracteristica" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="nombre" property="Nombre" behavior="readwrite" uniqueId="30a2f7f7-ac15-4563-a39b-65968726dbf4" type="System.String">
+          <orm:column name="nombre" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="unidadDeMedida" property="UnidadDeMedida" behavior="readwrite" uniqueId="75af9a9a-2928-4f8a-be45-7bcaa2628ce9" type="System.String">
+          <orm:column name="unidadDeMedida" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="inmueble_Caracteristicas" property="Inmueble_Caracteristicas" behavior="readwrite" uniqueId="ede4f66d-9f3b-496a-b0c6-7604586522d6" type="CapaDominio.Inmueble_Caracteristica">
+          <orm:collection element-class="CapaDominio.Inmueble_Caracteristica" inverse-field="tipoCaracteristica" order-by="" uniqueId="7481f2a9-238a-4d14-9639-5fae50a509be" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="TipoAmbiente" uniqueId="429b5ed9-41ba-4d00-a10b-492451f13ff3">
+        <orm:table name="TipoAmbiente" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="IdTipoAmbiente" />
+          </orm:key-generator>
+          <orm:single-field field-name="idTipoAmbiente" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="idTipoAmbiente" property="IdTipoAmbiente" behavior="readwrite" uniqueId="78df076f-23cb-4bf2-b95a-ff90a259b874" type="System.Int32">
+          <orm:column name="idTipoAmbiente" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="nombre" property="Nombre" behavior="readwrite" uniqueId="7f464734-5bdf-4149-9f1b-25ecaa79d5d3" type="System.String">
+          <orm:column name="nombre" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="inmueble_Ambientes" property="Inmueble_Ambientes" behavior="readwrite" uniqueId="6fdc04c6-a00f-4cee-9b46-4c2e0db63f41" type="CapaDominio.Inmueble_Ambiente">
+          <orm:collection element-class="CapaDominio.Inmueble_Ambiente" inverse-field="tipoAmbiente" order-by="" uniqueId="1668764e-5c0f-4976-975a-0645c974edac" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="Rol_Permiso" uniqueId="e035490b-777e-4475-b06c-e3f20bc67f03">
+        <orm:table name="Rol_Permiso" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="IdRol_Permiso" />
+          </orm:key-generator>
+          <orm:single-field field-name="idRol_Permiso" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="idRol_Permiso" property="IdRol_Permiso" behavior="readwrite" uniqueId="fa5965f5-8209-4cfd-bfbc-632b1b43c06f" type="System.Int32">
+          <orm:column name="idRol_Permiso" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="idRol" property="IdRol" behavior="readwrite" uniqueId="20e12c0d-d2db-41cd-8ae4-a8922e2eba5d" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="idRol" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="idPermiso" property="IdPermiso" behavior="readwrite" uniqueId="9e43a233-e6a6-4865-8ddb-5849d15d9dc8" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="idPermiso" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="permiso" property="Permiso" behavior="readwrite" uniqueId="2fa01e5e-505a-4de2-b7d7-fd7b7ae02d8c" type="CapaDominio.Permiso">
+          <orm:reference uniqueId="1cefb56c-02fc-4861-ade4-1d85334382ef" association-name="Rol_PermisoHasPermiso">
+            <orm:sharedfield name="idPermiso" target-class="CapaDominio.Permiso" target-field="idPermiso" />
+            <orm:constraint name="FK_Rol_Permiso_Permiso" delete-action="dbdefaultrule" destination-table="Permiso" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="rol" property="Rol" behavior="readwrite" uniqueId="73e515ac-7be5-4105-9ac1-99ab1190b737" type="CapaDominio.Rol">
+          <orm:reference uniqueId="0250897b-33eb-48ca-8c34-966e626f89e4" association-name="Rol_PermisoHasRol">
+            <orm:sharedfield name="idRol" target-class="CapaDominio.Rol" target-field="idRol" />
+            <orm:constraint name="FK_Rol_Permiso_Rol" delete-action="dbdefaultrule" destination-table="Rol" />
+          </orm:reference>
+        </orm:field>
+      </orm:class>
+      <orm:class name="Rol" uniqueId="dad3c515-7e45-4db7-85d1-49432c8cccab">
+        <orm:table name="Rol" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="IdRol" />
+          </orm:key-generator>
+          <orm:single-field field-name="idRol" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="idRol" property="IdRol" behavior="readwrite" uniqueId="82cff7f2-1180-41f1-bf2a-5c284c063179" type="System.Int32">
+          <orm:column name="idRol" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="nombreRol" property="NombreRol" behavior="readwrite" uniqueId="46dc63f4-a532-4877-abb2-991dfee8332f" type="System.String">
+          <orm:column name="nombreRol" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="usuarios" property="Usuarios" behavior="readwrite" uniqueId="b8ea31e2-c3c4-46a8-afef-5ec2b6a69ef1" type="CapaDominio.Usuario">
+          <orm:collection element-class="CapaDominio.Usuario" inverse-field="rol1" order-by="" uniqueId="b352817a-ac82-4f94-8eab-55ced53f66e2" />
+        </orm:field>
+        <orm:field name="rol_Permisos" property="Rol_Permisos" behavior="readwrite" uniqueId="a2e5a67a-17e6-4216-bbdf-ee27f5b66351" type="CapaDominio.Rol_Permiso">
+          <orm:collection element-class="CapaDominio.Rol_Permiso" inverse-field="rol" order-by="" uniqueId="0250897b-33eb-48ca-8c34-966e626f89e4" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="Provincium" uniqueId="d22f8c3c-15f5-4f13-8d8f-6af477e9c10c">
+        <orm:table name="Provincia" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="IdProvincia" />
+          </orm:key-generator>
+          <orm:single-field field-name="idProvincia" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="idProvincia" property="IdProvincia" behavior="readwrite" uniqueId="77143f61-2585-480d-9f7d-2a1bbc86d6c1" type="System.Int32">
+          <orm:column name="idProvincia" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="nombreProvincia" property="NombreProvincia" behavior="readwrite" uniqueId="7d1133c2-c305-46f2-b27c-6af5aa695eac" type="System.String">
+          <orm:column name="nombre provincia" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="localidads" property="Localidads" behavior="readwrite" uniqueId="f6fcf48f-be34-44fc-9227-834601484b95" type="CapaDominio.Localidad">
+          <orm:collection element-class="CapaDominio.Localidad" inverse-field="provincium" order-by="" uniqueId="47b319db-3fe2-43ad-8f1d-01b7fa6abea2" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="Permiso" uniqueId="b753dca7-24d0-495e-889a-5b0cf83310ca">
+        <orm:table name="Permiso" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="IdPermiso" />
+          </orm:key-generator>
+          <orm:single-field field-name="idPermiso" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="idPermiso" property="IdPermiso" behavior="readwrite" uniqueId="2c0c6bda-e51a-48eb-8cb2-451e0a5ad733" type="System.Int32">
+          <orm:column name="idPermiso" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="nombrePermiso" property="NombrePermiso" behavior="readwrite" uniqueId="cd2d4d7b-2fa7-4a6e-8228-04e3a133fc11" type="System.Byte[]">
+          <orm:column name="nombrePermiso" sql-type="varbinary" nullable="true" length="50" scale="0" ado-type="VarBinary" />
+        </orm:field>
+        <orm:field name="rol_Permisos" property="Rol_Permisos" behavior="readwrite" uniqueId="4fb5a48d-65c0-4d59-b79a-a0a52b21da8d" type="CapaDominio.Rol_Permiso">
+          <orm:collection element-class="CapaDominio.Rol_Permiso" inverse-field="permiso" order-by="" uniqueId="1cefb56c-02fc-4861-ade4-1d85334382ef" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="Moneda" uniqueId="92bb4336-ea08-45b4-a845-b33ff6f0a4f0">
+        <orm:table name="Moneda" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="IdMoneda" />
+          </orm:key-generator>
+          <orm:single-field field-name="idMoneda" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="idMoneda" property="IdMoneda" behavior="readwrite" uniqueId="c26af408-a873-451c-b91f-2a7c50a21c3e" type="System.Int32">
+          <orm:column name="idMoneda" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="nombre" property="Nombre" behavior="readwrite" uniqueId="b3bbae68-46b8-4438-8d67-688600e3e768" type="System.String">
+          <orm:column name="nombre" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="inmuebles" property="Inmuebles" behavior="readwrite" uniqueId="3f53f08f-e375-403f-af0a-4033e6f447e6" type="CapaDominio.Inmueble">
+          <orm:collection element-class="CapaDominio.Inmueble" inverse-field="moneda1" order-by="" uniqueId="4f95e7ae-6849-4845-a6e6-94d3a2caf424" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="Localidad" uniqueId="d019279d-a32b-4d4e-b8dd-fd0e824c9cdc">
+        <orm:table name="Localidad" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="IdLocalidad" />
+          </orm:key-generator>
+          <orm:single-field field-name="idLocalidad" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="idLocalidad" property="IdLocalidad" behavior="readwrite" uniqueId="fe8dbfd1-628d-4fb7-aee5-2d3b6afc7bf8" type="System.Int32">
+          <orm:column name="idLocalidad" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="nombreLocalidad" property="NombreLocalidad" behavior="readwrite" uniqueId="1b556ecc-a525-4365-b9b2-1120e62873b7" type="System.String">
+          <orm:column name="nombreLocalidad" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="codigoPostal" property="CodigoPostal" behavior="readwrite" uniqueId="0c9a03e8-6aed-4fac-a547-ee1909245544" type="System.String">
+          <orm:column name="codigoPostal" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="provincia" property="Provincia" behavior="readwrite" uniqueId="4993b7dc-a880-401f-b439-4bf259790794" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="provincia" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="provincium" property="Provincium" behavior="readwrite" uniqueId="3673f7d3-dac7-4c27-bb31-f7deacac2626" type="CapaDominio.Provincium">
+          <orm:reference uniqueId="47b319db-3fe2-43ad-8f1d-01b7fa6abea2" association-name="LocalidadHasProvincium">
+            <orm:sharedfield name="provincia" target-class="CapaDominio.Provincium" target-field="idProvincia" />
+            <orm:constraint name="FK_Localidad_Provincia" delete-action="dbdefaultrule" destination-table="Provincia" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="direccions" property="Direccions" behavior="readwrite" uniqueId="b7b92902-579b-4d0f-9c31-9fafe6f9d51d" type="CapaDominio.Direccion">
+          <orm:collection element-class="CapaDominio.Direccion" inverse-field="localidad1" order-by="" uniqueId="800e0705-3a31-463c-8af3-3affd1d64d8c" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="Inmueble_TipoOperacion" uniqueId="85043b60-c639-4386-bb53-2547b2063e18">
+        <orm:table name="Inmueble_TipoOperacion" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="IdInmueble_TipoOperacion" />
+          </orm:key-generator>
+          <orm:single-field field-name="idInmueble_TipoOperacion" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="idInmueble_TipoOperacion" property="IdInmueble_TipoOperacion" behavior="readwrite" uniqueId="6f8a314f-75f1-4682-aceb-fa014683a631" type="System.Int32">
+          <orm:column name="idInmueble_TipoOperacion" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="idInmueble" property="IdInmueble" behavior="readwrite" uniqueId="7e94976b-fb43-4c56-a41e-21a8c071d2cc" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="idInmueble" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="idTipoOperacion" property="IdTipoOperacion" behavior="readwrite" uniqueId="cf9f0638-d486-4ac2-b772-c6c535f0f6c4" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="idTipoOperacion" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="inmueble" property="Inmueble" behavior="readwrite" uniqueId="1aa4ef50-058e-4d34-85c2-84b1ffedd657" type="CapaDominio.Inmueble">
+          <orm:reference uniqueId="5562ea96-20e0-419f-bcff-11525df61632" association-name="Inmueble_TipoOperacionHasInmueble">
+            <orm:sharedfield name="idInmueble" target-class="CapaDominio.Inmueble" target-field="idInmueble" />
+            <orm:constraint name="FK_Inmueble_TipoOperacion_Inmueble" delete-action="dbdefaultrule" destination-table="Inmueble" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="tipoOperacion" property="TipoOperacion" behavior="readwrite" uniqueId="d08af014-1b88-4a94-ab00-63b35852a335" type="CapaDominio.TipoOperacion">
+          <orm:reference uniqueId="24dba0af-3244-4fc0-ba63-890f1d882d2e" association-name="Inmueble_TipoOperacionHasTipoOperacion">
+            <orm:sharedfield name="idTipoOperacion" target-class="CapaDominio.TipoOperacion" target-field="idTipoOperacion" />
+            <orm:constraint name="FK_Inmueble_TipoOperacion_TipoOperacion" delete-action="dbdefaultrule" destination-table="TipoOperacion" />
+          </orm:reference>
+        </orm:field>
+      </orm:class>
+      <orm:class name="Inmueble_Caracteristica" uniqueId="2aa50792-b0a0-4dbb-8d40-47ac57421771">
+        <orm:table name="Inmueble_Caracteristica" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="IdInmueble_Caracteristica" />
+          </orm:key-generator>
+          <orm:single-field field-name="idInmueble_Caracteristica" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="idInmueble_Caracteristica" property="IdInmueble_Caracteristica" behavior="readwrite" uniqueId="11775cbb-fc72-4a17-9b3d-c8030f224b49" type="System.Int32">
+          <orm:column name="idInmueble_Caracteristica" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="idInmueble" property="IdInmueble" behavior="readwrite" uniqueId="a8856987-f37a-4d91-83dd-1b3a990e6507" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="idInmueble" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="idTipoCaracteristica" property="IdTipoCaracteristica" behavior="readwrite" uniqueId="6bc091e9-8a46-46fc-a547-af816154ac1c" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="idTipoCaracteristica" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="valorMedida" property="ValorMedida" behavior="readwrite" uniqueId="97537692-ce13-4eca-9e84-89a5826a8a96" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="valorMedida" sql-type="numeric" nullable="true" length="18" scale="2" ado-type="Numeric" />
+        </orm:field>
+        <orm:field name="inmueble" property="Inmueble" behavior="readwrite" uniqueId="96c600b4-c91c-4dc3-b7d3-42a7bbe944d3" type="CapaDominio.Inmueble">
+          <orm:reference uniqueId="61fe0801-0ab4-4fc9-af03-accdf6c84778" association-name="Inmueble_CaracteristicaHasInmueble">
+            <orm:sharedfield name="idInmueble" target-class="CapaDominio.Inmueble" target-field="idInmueble" />
+            <orm:constraint name="FK_Inmueble_Caracteristica_Inmueble" delete-action="dbdefaultrule" destination-table="Inmueble" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="tipoCaracteristica" property="TipoCaracteristica" behavior="readwrite" uniqueId="a6495a57-9fa1-4d6b-a63e-e391f1ac62ea" type="CapaDominio.TipoCaracteristica">
+          <orm:reference uniqueId="7481f2a9-238a-4d14-9639-5fae50a509be" association-name="Inmueble_CaracteristicaHasTipoCaracteristica">
+            <orm:sharedfield name="idTipoCaracteristica" target-class="CapaDominio.TipoCaracteristica" target-field="idTipoCaracteristica" />
+            <orm:constraint name="FK_Inmueble_Caracteristica_TipoCaracteristica" delete-action="dbdefaultrule" destination-table="TipoCaracteristica" />
+          </orm:reference>
+        </orm:field>
+      </orm:class>
+      <orm:class name="Inmueble_Ambiente" uniqueId="52c05e45-ff72-4a37-b2fe-f352cd8d214a">
+        <orm:table name="Inmueble_Ambiente" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="IdInmueble_Ambiente" />
+          </orm:key-generator>
+          <orm:single-field field-name="idInmueble_Ambiente" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="idInmueble_Ambiente" property="IdInmueble_Ambiente" behavior="readwrite" uniqueId="819e1e43-9963-4df9-acbb-7beff4385a09" type="System.Int32">
+          <orm:column name="idInmueble_Ambiente" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="idInmueble" property="IdInmueble" behavior="readwrite" uniqueId="222d21ff-379b-4c91-a736-02240bd691cf" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="idInmueble" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="idTipoAmbiente" property="IdTipoAmbiente" behavior="readwrite" uniqueId="4c47c5f5-f77d-4641-9dc8-10173c305ecd" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="idTipoAmbiente" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="cantidad" property="Cantidad" behavior="readwrite" uniqueId="65d91b2b-e346-4627-8a29-d92b9fe52dd5" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="cantidad" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="inmueble" property="Inmueble" behavior="readwrite" uniqueId="3754912b-6305-4350-b293-0bc8a52a7379" type="CapaDominio.Inmueble">
+          <orm:reference uniqueId="0bd6ec07-22c9-4e79-9954-b9ab28e59ec1" association-name="Inmueble_AmbienteHasInmueble">
+            <orm:sharedfield name="idInmueble" target-class="CapaDominio.Inmueble" target-field="idInmueble" />
+            <orm:constraint name="FK_Inmueble_Ambiente_Inmueble" delete-action="dbdefaultrule" destination-table="Inmueble" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="tipoAmbiente" property="TipoAmbiente" behavior="readwrite" uniqueId="7734d001-0590-43b6-9f3e-2de089ec8618" type="CapaDominio.TipoAmbiente">
+          <orm:reference uniqueId="1668764e-5c0f-4976-975a-0645c974edac" association-name="Inmueble_AmbienteHasTipoAmbiente">
+            <orm:sharedfield name="idTipoAmbiente" target-class="CapaDominio.TipoAmbiente" target-field="idTipoAmbiente" />
+            <orm:constraint name="FK_Inmueble_Ambiente_TipoAmbiente" delete-action="dbdefaultrule" destination-table="TipoAmbiente" />
+          </orm:reference>
+        </orm:field>
+      </orm:class>
+      <orm:class name="Inmueble" uniqueId="fb0eb300-11e0-4fb2-9143-d49bd4bc3321">
+        <orm:table name="Inmueble" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="IdInmueble" />
+          </orm:key-generator>
+          <orm:single-field field-name="idInmueble" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="idInmueble" property="IdInmueble" behavior="readwrite" uniqueId="7f4a2fba-5852-4914-8c88-3f8987b42000" type="System.Int32">
+          <orm:column name="idInmueble" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="direccion" property="Direccion" behavior="readwrite" uniqueId="70152a39-7091-48d2-a154-a900a1cc7656" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="direccion" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="tipoInmueble" property="TipoInmueble" behavior="readwrite" uniqueId="685415c6-2219-4977-acf1-7b55c4db7f11" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="tipoInmueble" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="titulo" property="Titulo" behavior="readwrite" uniqueId="d8ab364b-920b-43ae-9d93-8f9222e8ec8f" type="System.String">
+          <orm:column name="titulo" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="descripcion" property="Descripcion" behavior="readwrite" uniqueId="83c36bd7-871e-4c9c-aff4-b246371d986f" type="System.String">
+          <orm:column name="descripcion" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="valor" property="Valor" behavior="readwrite" uniqueId="f38eb7c5-ab03-4a31-bda9-ac96b8f8c35e" type="System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="valor" sql-type="numeric" nullable="true" length="18" scale="2" ado-type="Numeric" />
+        </orm:field>
+        <orm:field name="moneda" property="Moneda" behavior="readwrite" uniqueId="636a3e2b-98a2-4a73-8707-c0110f17f0f4" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="moneda" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="isDestacada" property="IsDestacada" behavior="readwrite" uniqueId="c065e781-9cbd-4225-b3c6-1799e7f255dc" type="System.Nullable`1[[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="isDestacada" sql-type="bit" nullable="true" length="0" scale="0" ado-type="Bit" />
+        </orm:field>
+        <orm:field name="fechaPublicacion" property="FechaPublicacion" behavior="readwrite" uniqueId="cacaae62-0a67-494c-a3bc-97a4054bb10d" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="fechaPublicacion" sql-type="date" nullable="true" length="0" scale="0" ado-type="Date" />
+        </orm:field>
+        <orm:field name="tipoEstado" property="TipoEstado" behavior="readwrite" uniqueId="af1eca55-a6ed-4bfd-a816-da63dcb152fe" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="tipoEstado" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="usuario" property="Usuario" behavior="readwrite" uniqueId="0c091e99-bb1a-428b-97f4-75da533f25df" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="usuario" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="inmueble_TipoOperacions" property="Inmueble_TipoOperacions" behavior="readwrite" uniqueId="08b18155-7833-404e-91ee-4b0bd67cc8e5" type="CapaDominio.Inmueble_TipoOperacion">
+          <orm:collection element-class="CapaDominio.Inmueble_TipoOperacion" inverse-field="inmueble" order-by="" uniqueId="5562ea96-20e0-419f-bcff-11525df61632" />
+        </orm:field>
+        <orm:field name="inmueble_Caracteristicas" property="Inmueble_Caracteristicas" behavior="readwrite" uniqueId="27b6ebd9-54d6-466d-b5c7-866eadedd687" type="CapaDominio.Inmueble_Caracteristica">
+          <orm:collection element-class="CapaDominio.Inmueble_Caracteristica" inverse-field="inmueble" order-by="" uniqueId="61fe0801-0ab4-4fc9-af03-accdf6c84778" />
+        </orm:field>
+        <orm:field name="inmueble_Ambientes" property="Inmueble_Ambientes" behavior="readwrite" uniqueId="be4f60bc-38a1-4bd9-8a59-2372093b377d" type="CapaDominio.Inmueble_Ambiente">
+          <orm:collection element-class="CapaDominio.Inmueble_Ambiente" inverse-field="inmueble" order-by="" uniqueId="0bd6ec07-22c9-4e79-9954-b9ab28e59ec1" />
+        </orm:field>
+        <orm:field name="direccion1" property="Direccion1" behavior="readwrite" uniqueId="f160a5da-231a-4af3-b892-f3e23a33bd6d" type="CapaDominio.Direccion">
+          <orm:reference uniqueId="92fa0f5b-9377-48e7-a16a-84f594d6f82c" association-name="InmuebleHasDireccion">
+            <orm:sharedfield name="direccion" target-class="CapaDominio.Direccion" target-field="idDireccion" />
+            <orm:constraint name="FK_Inmueble_Direccion" delete-action="dbdefaultrule" destination-table="Direccion" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="moneda1" property="Moneda1" behavior="readwrite" uniqueId="add46b05-7b72-4668-8ab2-60094bce2863" type="CapaDominio.Moneda">
+          <orm:reference uniqueId="4f95e7ae-6849-4845-a6e6-94d3a2caf424" association-name="InmuebleHasMoneda">
+            <orm:sharedfield name="moneda" target-class="CapaDominio.Moneda" target-field="idMoneda" />
+            <orm:constraint name="FK_Inmueble_Moneda" delete-action="dbdefaultrule" destination-table="Moneda" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="tipoEstado1" property="TipoEstado1" behavior="readwrite" uniqueId="9cbcee50-5059-4402-bea9-679d4c9cc85d" type="CapaDominio.TipoEstado">
+          <orm:reference uniqueId="9f843d6f-cb44-47c9-a3ee-42dd4a03ee03" association-name="InmuebleHasTipoEstado">
+            <orm:sharedfield name="tipoEstado" target-class="CapaDominio.TipoEstado" target-field="idTipoEstado" />
+            <orm:constraint name="FK_Inmueble_TipoEstado" delete-action="dbdefaultrule" destination-table="TipoEstado" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="tipoInmueble1" property="TipoInmueble1" behavior="readwrite" uniqueId="2d3111bd-ec28-4abd-b503-4f15f0330c86" type="CapaDominio.TipoInmueble">
+          <orm:reference uniqueId="60e1654e-8361-43b7-8cb5-f811987e6108" association-name="InmuebleHasTipoInmueble">
+            <orm:sharedfield name="tipoInmueble" target-class="CapaDominio.TipoInmueble" target-field="idTipoInmueble" />
+            <orm:constraint name="FK_Inmueble_TipoInmueble" delete-action="dbdefaultrule" destination-table="TipoInmueble" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="usuario1" property="Usuario1" behavior="readwrite" uniqueId="747089b1-b45c-441b-ac33-a18fde4be076" type="CapaDominio.Usuario">
+          <orm:reference uniqueId="34905f63-d4bd-4a75-a563-065c8f4ef7cc" association-name="InmuebleHasUsuario">
+            <orm:sharedfield name="usuario" target-class="CapaDominio.Usuario" target-field="idUsuario" />
+            <orm:constraint name="FK_Inmueble_Usuario" delete-action="dbdefaultrule" destination-table="Usuario" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="imagens" property="Imagens" behavior="readwrite" uniqueId="2c218e76-41f4-4f7e-acc3-439500bc28a1" type="CapaDominio.Imagen">
+          <orm:collection element-class="CapaDominio.Imagen" inverse-field="inmueble1" order-by="" uniqueId="90f90ca9-e830-4b57-839d-68fb610c9aea" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="Imagen" uniqueId="d784d80f-64c2-46af-afa6-30bc2401a534">
+        <orm:table name="Imagen" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="IdImagen" />
+          </orm:key-generator>
+          <orm:single-field field-name="idImagen" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="idImagen" property="IdImagen" behavior="readwrite" uniqueId="ecf06ea2-079e-4437-b402-24eced35eced" type="System.Int32">
+          <orm:column name="idImagen" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="inmueble" property="Inmueble" behavior="readwrite" uniqueId="10d95638-b7fe-4dae-a25f-61d38cfe2ae8" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="inmueble" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="linkImagen" property="LinkImagen" behavior="readwrite" uniqueId="a2375eaf-c7fa-4403-8bf8-55c376f7a065" type="System.String">
+          <orm:column name="linkImagen" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="inmueble1" property="Inmueble1" behavior="readwrite" uniqueId="a7d8e20b-a5d0-4286-935e-067de4040a08" type="CapaDominio.Inmueble">
+          <orm:reference uniqueId="90f90ca9-e830-4b57-839d-68fb610c9aea" association-name="ImagenHasInmueble">
+            <orm:sharedfield name="inmueble" target-class="CapaDominio.Inmueble" target-field="idInmueble" />
+            <orm:constraint name="FK_Imagen_Inmueble" delete-action="dbdefaultrule" destination-table="Inmueble" />
+          </orm:reference>
+        </orm:field>
+      </orm:class>
+      <orm:class name="Direccion" uniqueId="657dc818-986b-48de-ae54-29e1e4de9434">
+        <orm:table name="Direccion" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="IdDireccion" />
+          </orm:key-generator>
+          <orm:single-field field-name="idDireccion" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="idDireccion" property="IdDireccion" behavior="readwrite" uniqueId="d4f6c925-d960-4adf-af2c-27c4d1ea07da" type="System.Int32">
+          <orm:column name="idDireccion" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="calle" property="Calle" behavior="readwrite" uniqueId="094ae741-d14d-4af1-be4d-c7cbb072fc82" type="System.String">
+          <orm:column name="calle" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="numero" property="Numero" behavior="readwrite" uniqueId="6ab34391-bef7-4e94-a43b-d66ee29587dd" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="numero" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="piso" property="Piso" behavior="readwrite" uniqueId="d83ae543-8b90-4712-86e8-aa1165cef5af" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="piso" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="departamento" property="Departamento" behavior="readwrite" uniqueId="1f736e0e-e6e9-4b9f-bbe5-ed2731e37052" type="System.String">
+          <orm:column name="departamento" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="localidad" property="Localidad" behavior="readwrite" uniqueId="55147247-60c8-4688-a020-9e8fb3ef0b78" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="localidad" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="inmuebles" property="Inmuebles" behavior="readwrite" uniqueId="42adc593-6e9b-47d7-a155-6df9864073a6" type="CapaDominio.Inmueble">
+          <orm:collection element-class="CapaDominio.Inmueble" inverse-field="direccion1" order-by="" uniqueId="92fa0f5b-9377-48e7-a16a-84f594d6f82c" />
+        </orm:field>
+        <orm:field name="localidad1" property="Localidad1" behavior="readwrite" uniqueId="bf1a6fcc-b0e1-4ffa-98b4-3abd36372451" type="CapaDominio.Localidad">
+          <orm:reference uniqueId="800e0705-3a31-463c-8af3-3affd1d64d8c" association-name="DireccionHasLocalidad">
+            <orm:sharedfield name="localidad" target-class="CapaDominio.Localidad" target-field="idLocalidad" />
+            <orm:constraint name="FK_Direccion_Localidad" delete-action="dbdefaultrule" destination-table="Localidad" />
+          </orm:reference>
+        </orm:field>
+      </orm:class>
+    </orm:namespace>
+    <orm:schema schema="">
+      <orm:table name="Usuario">
+        <orm:column name="idUsuario" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="nombreUsuario" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="password" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="nombre" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="apellido" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="rol" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:constraint name="FK_Usuario_Rol" delete-action="dbdefaultrule" destination-table="Rol">
+          <orm:column name="rol" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="TipoOperacion">
+        <orm:column name="idTipoOperacion" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="nombre" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+      </orm:table>
+      <orm:table name="TipoInmueble">
+        <orm:column name="idTipoInmueble" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="nombre" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+      </orm:table>
+      <orm:table name="TipoEstado">
+        <orm:column name="idTipoEstado" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="tipoEstado" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+      </orm:table>
+      <orm:table name="TipoCaracteristica">
+        <orm:column name="idTipoCaracteristica" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="nombre" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="unidadDeMedida" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+      </orm:table>
+      <orm:table name="TipoAmbiente">
+        <orm:column name="idTipoAmbiente" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="nombre" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+      </orm:table>
+      <orm:table name="Rol_Permiso">
+        <orm:column name="idRol_Permiso" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="idRol" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="idPermiso" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:constraint name="FK_Rol_Permiso_Permiso" delete-action="dbdefaultrule" destination-table="Permiso">
+          <orm:column name="idPermiso" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+        <orm:constraint name="FK_Rol_Permiso_Rol" delete-action="dbdefaultrule" destination-table="Rol">
+          <orm:column name="idRol" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="Rol">
+        <orm:column name="idRol" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="nombreRol" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+      </orm:table>
+      <orm:table name="Provincia">
+        <orm:column name="idProvincia" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="nombre provincia" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+      </orm:table>
+      <orm:table name="Permiso">
+        <orm:column name="idPermiso" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="nombrePermiso" sql-type="varbinary" nullable="true" length="50" scale="0" ado-type="VarBinary" />
+      </orm:table>
+      <orm:table name="Moneda">
+        <orm:column name="idMoneda" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="nombre" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+      </orm:table>
+      <orm:table name="Localidad">
+        <orm:column name="idLocalidad" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="nombreLocalidad" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="codigoPostal" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="provincia" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:constraint name="FK_Localidad_Provincia" delete-action="dbdefaultrule" destination-table="Provincia">
+          <orm:column name="provincia" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="Inmueble_TipoOperacion">
+        <orm:column name="idInmueble_TipoOperacion" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="idInmueble" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="idTipoOperacion" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:constraint name="FK_Inmueble_TipoOperacion_Inmueble" delete-action="dbdefaultrule" destination-table="Inmueble">
+          <orm:column name="idInmueble" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+        <orm:constraint name="FK_Inmueble_TipoOperacion_TipoOperacion" delete-action="dbdefaultrule" destination-table="TipoOperacion">
+          <orm:column name="idTipoOperacion" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="Inmueble_Caracteristica">
+        <orm:column name="idInmueble_Caracteristica" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="idInmueble" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="idTipoCaracteristica" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="valorMedida" sql-type="numeric" nullable="true" length="18" scale="2" ado-type="Numeric" />
+        <orm:constraint name="FK_Inmueble_Caracteristica_Inmueble" delete-action="dbdefaultrule" destination-table="Inmueble">
+          <orm:column name="idInmueble" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+        <orm:constraint name="FK_Inmueble_Caracteristica_TipoCaracteristica" delete-action="dbdefaultrule" destination-table="TipoCaracteristica">
+          <orm:column name="idTipoCaracteristica" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="Inmueble_Ambiente">
+        <orm:column name="idInmueble_Ambiente" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="idInmueble" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="idTipoAmbiente" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="cantidad" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:constraint name="FK_Inmueble_Ambiente_Inmueble" delete-action="dbdefaultrule" destination-table="Inmueble">
+          <orm:column name="idInmueble" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+        <orm:constraint name="FK_Inmueble_Ambiente_TipoAmbiente" delete-action="dbdefaultrule" destination-table="TipoAmbiente">
+          <orm:column name="idTipoAmbiente" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="Inmueble">
+        <orm:column name="idInmueble" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="direccion" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="tipoInmueble" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="titulo" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="descripcion" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="valor" sql-type="numeric" nullable="true" length="18" scale="2" ado-type="Numeric" />
+        <orm:column name="moneda" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="isDestacada" sql-type="bit" nullable="true" length="0" scale="0" ado-type="Bit" />
+        <orm:column name="fechaPublicacion" sql-type="date" nullable="true" length="0" scale="0" ado-type="Date" />
+        <orm:column name="tipoEstado" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="usuario" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:constraint name="FK_Inmueble_Direccion" delete-action="dbdefaultrule" destination-table="Direccion">
+          <orm:column name="direccion" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+        <orm:constraint name="FK_Inmueble_Moneda" delete-action="dbdefaultrule" destination-table="Moneda">
+          <orm:column name="moneda" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+        <orm:constraint name="FK_Inmueble_TipoEstado" delete-action="dbdefaultrule" destination-table="TipoEstado">
+          <orm:column name="tipoEstado" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+        <orm:constraint name="FK_Inmueble_TipoInmueble" delete-action="dbdefaultrule" destination-table="TipoInmueble">
+          <orm:column name="tipoInmueble" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+        <orm:constraint name="FK_Inmueble_Usuario" delete-action="dbdefaultrule" destination-table="Usuario">
+          <orm:column name="usuario" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="Imagen">
+        <orm:column name="idImagen" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="inmueble" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="linkImagen" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        <orm:constraint name="FK_Imagen_Inmueble" delete-action="dbdefaultrule" destination-table="Inmueble">
+          <orm:column name="inmueble" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="Direccion">
+        <orm:column name="idDireccion" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="calle" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="numero" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="piso" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="departamento" sql-type="varchar" nullable="true" length="50" scale="0" ado-type="StringVariableLength" />
+        <orm:column name="localidad" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:constraint name="FK_Direccion_Localidad" delete-action="dbdefaultrule" destination-table="Localidad">
+          <orm:column name="localidad" sql-type="int" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:procedure name="fn_diagramobjects" is-function="true" return-type="int">
+        <orm:result-sets />
+      </orm:procedure>
+    </orm:schema>
+    <orm:relational-naming-settings>
+      <orm:source-strategy>Property</orm:source-strategy>
+      <orm:remove-camel-case>False</orm:remove-camel-case>
+    </orm:relational-naming-settings>
+  </orm:orm>
+  <ModelSettings xmlns="">
+    <AppConfigConnectionPropertyName>InmodbConnection</AppConfigConnectionPropertyName>
+    <AppConfigConnectionString>Data Source=COPADE_077\SQLEXPRESS;Initial Catalog=Inmodb;Integrated Security=True</AppConfigConnectionString>
+    <InitialCatalog>Inmodb</InitialCatalog>
+    <NamingSettings>
+      <ClassRules>
+        <CaseMode>PascalCase</CaseMode>
+        <PluralizationMode>Singularize</PluralizationMode>
+      </ClassRules>
+      <FieldRules>
+        <CaseMode>CamelCase</CaseMode>
+      </FieldRules>
+      <PropertyRules>
+        <CaseMode>PascalCase</CaseMode>
+      </PropertyRules>
+      <NavigationPropertyRules>
+        <IsPrefixSuffixEnabled>false</IsPrefixSuffixEnabled>
+      </NavigationPropertyRules>
+    </NamingSettings>
+    <CodeGenerationSettings>
+      <OutputProjectName>CapaDominio</OutputProjectName>
+      <MappingDefinitionType>Xml</MappingDefinitionType>
+    </CodeGenerationSettings>
+    <SchemaUpdateSettings />
+    <BackendConfigurationSettings>
+      <BackendConfiguration>
+        <Backend>MsSql</Backend>
+        <ProviderName>System.Data.SqlClient</ProviderName>
+      </BackendConfiguration>
+    </BackendConfigurationSettings>
+  </ModelSettings>
+  <Types>
+    <DomainClass Id="c17c265d-e5c6-40e1-8f3b-c9c5f970baef" name="Usuario" namespace="CapaDominio" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="IdUsuario">
+      <Property Id="65d88647-9925-4536-a456-d0b308616290" name="IdUsuario" type="Int32" label="IdUsuario : Int32" kind="Persistent" identity="true" fieldName="idUsuario" />
+      <Property Id="312f4d3a-7130-480b-b378-e591a9fdf76f" name="Apellido" label="Apellido : String" kind="Persistent" fieldName="apellido" />
+      <Property Id="3d84b32c-a8be-48a9-9914-d886a2564959" name="Nombre" label="Nombre : String" kind="Persistent" fieldName="nombre" />
+      <Property Id="a5bf07e3-e635-44e1-afcf-310000b9df9e" name="NombreUsuario" label="NombreUsuario : String" kind="Persistent" fieldName="nombreUsuario" />
+      <Property Id="00d444c8-f0a1-4544-b5ee-2639a1f83dd9" name="Password" label="Password : String" kind="Persistent" fieldName="password" />
+      <Property Id="25fdfa06-c663-47b2-95c8-eaae837dd8fe" name="Rol" type="Int32" label="Rol : Int32" nullable="true" kind="Persistent" fieldName="rol" />
+      <AssociationTargets>
+        <Association Id="b352817a-ac82-4f94-8eab-55ced53f66e2" SourceMultiplicity="ZeroOne" name="UsuarioHasRol">
+          <DomainClassMoniker name="/ModeloDeDominio/Rol" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="a67cef5f-2338-43af-9686-63ff15f37fc6">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Rol/Usuarios" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="5bce369f-bd31-4e6c-8d17-967a4c0a1e1c">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Usuario/Rol1" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="5f71bc9e-ad68-4f01-bb4c-ad897904f722">
+          <NavigationalProperty Id="b9c1b7c7-c3b5-4283-967c-d6336a1c23bf" name="Rol1" type="Rol" label="Rol1 : Rol" nullable="true" kind="Persistent" fieldName="rol1" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="2ad9c1dc-40ed-4952-9c67-4c02052bc4e6">
+          <NavigationalProperty Id="3ba447dd-27cd-4e50-8051-70263d803486" name="Inmuebles" type="IList&lt;Inmueble&gt;" label="Inmuebles : IList&lt;Inmueble&gt;" nullable="true" kind="Persistent" fieldName="inmuebles" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="a0780563-2750-4f75-a652-8e260e524d4d" name="TipoOperacion" namespace="CapaDominio" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="IdTipoOperacion">
+      <Property Id="67b824ad-2a61-4716-a99b-8dce958a7f03" name="IdTipoOperacion" type="Int32" label="IdTipoOperacion : Int32" kind="Persistent" identity="true" fieldName="idTipoOperacion" />
+      <Property Id="e1fde7d4-427d-4890-8a29-75617834c0ea" name="Nombre" label="Nombre : String" kind="Persistent" fieldName="nombre" />
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="3743fba6-4fac-497c-a08b-e1b88950ea68">
+          <NavigationalProperty Id="f97b7375-cb84-4a2b-8e18-a1ac31ed9961" name="Inmueble_TipoOperacions" type="IList&lt;Inmueble_TipoOperacion&gt;" label="Inmueble_TipoOperacions : IList&lt;Inmueble_TipoOperacion&gt;" nullable="true" kind="Persistent" fieldName="inmueble_TipoOperacions" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="edd0827c-af95-407e-b1eb-ebc8e0d7407b" name="TipoInmueble" namespace="CapaDominio" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="IdTipoInmueble">
+      <Property Id="4095b933-6038-44ef-a8de-c93d0feffc5e" name="IdTipoInmueble" type="Int32" label="IdTipoInmueble : Int32" kind="Persistent" identity="true" fieldName="idTipoInmueble" />
+      <Property Id="eb0454c1-e608-4a71-9a51-5882b7182848" name="Nombre" label="Nombre : String" kind="Persistent" fieldName="nombre" />
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="3076e679-775f-416b-85d7-dcc67577fb81">
+          <NavigationalProperty Id="8a6d5c13-b96e-4a2f-a4f3-969074f70939" name="Inmuebles" type="IList&lt;Inmueble&gt;" label="Inmuebles : IList&lt;Inmueble&gt;" nullable="true" kind="Persistent" fieldName="inmuebles" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="a125d29f-b624-4388-a0ef-915f0a2b51e3" name="TipoEstado" namespace="CapaDominio" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="IdTipoEstado">
+      <Property Id="fd94e734-b4da-4cfb-b32a-226c74efd6e4" name="IdTipoEstado" type="Int32" label="IdTipoEstado : Int32" kind="Persistent" identity="true" fieldName="idTipoEstado" />
+      <Property Id="388ea6be-5f0c-4c85-a341-341369635d72" name="TipoEstado1" label="TipoEstado1 : String" kind="Persistent" fieldName="tipoEstado1" />
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="c46463e1-f824-414a-a4bf-a90ccea65d49">
+          <NavigationalProperty Id="eeafda17-ba44-4a8d-853c-143340b3320b" name="Inmuebles" type="IList&lt;Inmueble&gt;" label="Inmuebles : IList&lt;Inmueble&gt;" nullable="true" kind="Persistent" fieldName="inmuebles" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="9fdeea38-427c-4e03-8600-8e06d46f0801" name="TipoCaracteristica" namespace="CapaDominio" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="IdTipoCaracteristica">
+      <Property Id="4f95061f-83e5-403d-9052-6bfbeec00a10" name="IdTipoCaracteristica" type="Int32" label="IdTipoCaracteristica : Int32" kind="Persistent" identity="true" fieldName="idTipoCaracteristica" />
+      <Property Id="30a2f7f7-ac15-4563-a39b-65968726dbf4" name="Nombre" label="Nombre : String" kind="Persistent" fieldName="nombre" />
+      <Property Id="75af9a9a-2928-4f8a-be45-7bcaa2628ce9" name="UnidadDeMedida" label="UnidadDeMedida : String" kind="Persistent" fieldName="unidadDeMedida" />
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="e4a5a876-5f58-4b54-b161-d4563db76d7a">
+          <NavigationalProperty Id="ede4f66d-9f3b-496a-b0c6-7604586522d6" name="Inmueble_Caracteristicas" type="IList&lt;Inmueble_Caracteristica&gt;" label="Inmueble_Caracteristicas : IList&lt;Inmueble_Caracteristica&gt;" nullable="true" kind="Persistent" fieldName="inmueble_Caracteristicas" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="429b5ed9-41ba-4d00-a10b-492451f13ff3" name="TipoAmbiente" namespace="CapaDominio" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="IdTipoAmbiente">
+      <Property Id="78df076f-23cb-4bf2-b95a-ff90a259b874" name="IdTipoAmbiente" type="Int32" label="IdTipoAmbiente : Int32" kind="Persistent" identity="true" fieldName="idTipoAmbiente" />
+      <Property Id="7f464734-5bdf-4149-9f1b-25ecaa79d5d3" name="Nombre" label="Nombre : String" kind="Persistent" fieldName="nombre" />
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="b8142634-fd8e-42d2-afee-cc4589a23d05">
+          <NavigationalProperty Id="6fdc04c6-a00f-4cee-9b46-4c2e0db63f41" name="Inmueble_Ambientes" type="IList&lt;Inmueble_Ambiente&gt;" label="Inmueble_Ambientes : IList&lt;Inmueble_Ambiente&gt;" nullable="true" kind="Persistent" fieldName="inmueble_Ambientes" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="e035490b-777e-4475-b06c-e3f20bc67f03" name="Rol_Permiso" namespace="CapaDominio" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="IdRol_Permiso">
+      <Property Id="fa5965f5-8209-4cfd-bfbc-632b1b43c06f" name="IdRol_Permiso" type="Int32" label="IdRol_Permiso : Int32" kind="Persistent" identity="true" fieldName="idRol_Permiso" />
+      <Property Id="9e43a233-e6a6-4865-8ddb-5849d15d9dc8" name="IdPermiso" type="Int32" label="IdPermiso : Int32" nullable="true" kind="Persistent" fieldName="idPermiso" />
+      <Property Id="20e12c0d-d2db-41cd-8ae4-a8922e2eba5d" name="IdRol" type="Int32" label="IdRol : Int32" nullable="true" kind="Persistent" fieldName="idRol" />
+      <AssociationTargets>
+        <Association Id="1cefb56c-02fc-4861-ade4-1d85334382ef" SourceMultiplicity="ZeroOne" name="Rol_PermisoHasPermiso">
+          <DomainClassMoniker name="/ModeloDeDominio/Permiso" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="6c4cb098-6d9a-4d31-8a3a-fbb10cbbc94f">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Permiso/Rol_Permisos" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="44094a41-e449-41a4-8d39-1b99b382c898">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Rol_Permiso/Permiso" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="0250897b-33eb-48ca-8c34-966e626f89e4" SourceMultiplicity="ZeroOne" name="Rol_PermisoHasRol">
+          <DomainClassMoniker name="/ModeloDeDominio/Rol" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="003d7f24-f29a-4082-8c80-0aaca886078c">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Rol/Rol_Permisos" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="a32512be-09a3-4367-a9e5-d248a72ee92c">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Rol_Permiso/Rol" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="23263e67-c8e1-4d56-a5b0-1dd4246daff7">
+          <NavigationalProperty Id="2fa01e5e-505a-4de2-b7d7-fd7b7ae02d8c" name="Permiso" type="Permiso" label="Permiso : Permiso" nullable="true" kind="Persistent" fieldName="permiso" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="8f67187a-7116-432d-8af2-f4fa80a27394">
+          <NavigationalProperty Id="73e515ac-7be5-4105-9ac1-99ab1190b737" name="Rol" type="Rol" label="Rol : Rol" nullable="true" kind="Persistent" fieldName="rol" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="dad3c515-7e45-4db7-85d1-49432c8cccab" name="Rol" namespace="CapaDominio" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="IdRol">
+      <Property Id="82cff7f2-1180-41f1-bf2a-5c284c063179" name="IdRol" type="Int32" label="IdRol : Int32" kind="Persistent" identity="true" fieldName="idRol" />
+      <Property Id="46dc63f4-a532-4877-abb2-991dfee8332f" name="NombreRol" label="NombreRol : String" kind="Persistent" fieldName="nombreRol" />
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="7deaefef-870b-4075-aa0c-7ef4bd08e5a1">
+          <NavigationalProperty Id="b8ea31e2-c3c4-46a8-afef-5ec2b6a69ef1" name="Usuarios" type="IList&lt;Usuario&gt;" label="Usuarios : IList&lt;Usuario&gt;" nullable="true" kind="Persistent" fieldName="usuarios" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="2663258f-ba12-4c88-bccc-5109b09af193">
+          <NavigationalProperty Id="a2e5a67a-17e6-4216-bbdf-ee27f5b66351" name="Rol_Permisos" type="IList&lt;Rol_Permiso&gt;" label="Rol_Permisos : IList&lt;Rol_Permiso&gt;" nullable="true" kind="Persistent" fieldName="rol_Permisos" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="d22f8c3c-15f5-4f13-8d8f-6af477e9c10c" name="Provincium" namespace="CapaDominio" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="IdProvincia">
+      <Property Id="77143f61-2585-480d-9f7d-2a1bbc86d6c1" name="IdProvincia" type="Int32" label="IdProvincia : Int32" kind="Persistent" identity="true" fieldName="idProvincia" />
+      <Property Id="7d1133c2-c305-46f2-b27c-6af5aa695eac" name="NombreProvincia" label="NombreProvincia : String" kind="Persistent" fieldName="nombreProvincia" />
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="bfc2d6f5-4bfc-44b8-9f80-d9dc655fad60">
+          <NavigationalProperty Id="f6fcf48f-be34-44fc-9227-834601484b95" name="Localidads" type="IList&lt;Localidad&gt;" label="Localidads : IList&lt;Localidad&gt;" nullable="true" kind="Persistent" fieldName="localidads" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="b753dca7-24d0-495e-889a-5b0cf83310ca" name="Permiso" namespace="CapaDominio" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="IdPermiso">
+      <Property Id="2c0c6bda-e51a-48eb-8cb2-451e0a5ad733" name="IdPermiso" type="Int32" label="IdPermiso : Int32" kind="Persistent" identity="true" fieldName="idPermiso" />
+      <Property Id="cd2d4d7b-2fa7-4a6e-8228-04e3a133fc11" name="NombrePermiso" type="Byte[]" label="NombrePermiso : Byte[]" kind="Persistent" fieldName="nombrePermiso" />
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="2d0f19a9-cc57-46d1-bcc9-4d09237d0acf">
+          <NavigationalProperty Id="4fb5a48d-65c0-4d59-b79a-a0a52b21da8d" name="Rol_Permisos" type="IList&lt;Rol_Permiso&gt;" label="Rol_Permisos : IList&lt;Rol_Permiso&gt;" nullable="true" kind="Persistent" fieldName="rol_Permisos" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="92bb4336-ea08-45b4-a845-b33ff6f0a4f0" name="Moneda" namespace="CapaDominio" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="IdMoneda">
+      <Property Id="c26af408-a873-451c-b91f-2a7c50a21c3e" name="IdMoneda" type="Int32" label="IdMoneda : Int32" kind="Persistent" identity="true" fieldName="idMoneda" />
+      <Property Id="b3bbae68-46b8-4438-8d67-688600e3e768" name="Nombre" label="Nombre : String" kind="Persistent" fieldName="nombre" />
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="2b9d90f1-5c3e-4db4-89ca-99adea28bd50">
+          <NavigationalProperty Id="3f53f08f-e375-403f-af0a-4033e6f447e6" name="Inmuebles" type="IList&lt;Inmueble&gt;" label="Inmuebles : IList&lt;Inmueble&gt;" nullable="true" kind="Persistent" fieldName="inmuebles" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="d019279d-a32b-4d4e-b8dd-fd0e824c9cdc" name="Localidad" namespace="CapaDominio" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="IdLocalidad">
+      <Property Id="fe8dbfd1-628d-4fb7-aee5-2d3b6afc7bf8" name="IdLocalidad" type="Int32" label="IdLocalidad : Int32" kind="Persistent" identity="true" fieldName="idLocalidad" />
+      <Property Id="0c9a03e8-6aed-4fac-a547-ee1909245544" name="CodigoPostal" label="CodigoPostal : String" kind="Persistent" fieldName="codigoPostal" />
+      <Property Id="1b556ecc-a525-4365-b9b2-1120e62873b7" name="NombreLocalidad" label="NombreLocalidad : String" kind="Persistent" fieldName="nombreLocalidad" />
+      <Property Id="4993b7dc-a880-401f-b439-4bf259790794" name="Provincia" type="Int32" label="Provincia : Int32" nullable="true" kind="Persistent" fieldName="provincia" />
+      <AssociationTargets>
+        <Association Id="47b319db-3fe2-43ad-8f1d-01b7fa6abea2" SourceMultiplicity="ZeroOne" name="LocalidadHasProvincium">
+          <DomainClassMoniker name="/ModeloDeDominio/Provincium" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="f00e0a1f-fb4e-41cc-ab6b-f6ff5e18133b">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Provincium/Localidads" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="abbfd044-2620-4db8-92ed-7249d1863c47">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Localidad/Provincium" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="45f827d9-187e-4430-a55e-77528c34c9b0">
+          <NavigationalProperty Id="3673f7d3-dac7-4c27-bb31-f7deacac2626" name="Provincium" type="Provincium" label="Provincium : Provincium" nullable="true" kind="Persistent" fieldName="provincium" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="085a51b3-2174-4893-9b11-ca5bc9eb7b72">
+          <NavigationalProperty Id="b7b92902-579b-4d0f-9c31-9fafe6f9d51d" name="Direccions" type="IList&lt;Direccion&gt;" label="Direccions : IList&lt;Direccion&gt;" nullable="true" kind="Persistent" fieldName="direccions" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="85043b60-c639-4386-bb53-2547b2063e18" name="Inmueble_TipoOperacion" namespace="CapaDominio" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="IdInmueble_TipoOperacion">
+      <Property Id="6f8a314f-75f1-4682-aceb-fa014683a631" name="IdInmueble_TipoOperacion" type="Int32" label="IdInmueble_TipoOperacion : Int32" kind="Persistent" identity="true" fieldName="idInmueble_TipoOperacion" />
+      <Property Id="7e94976b-fb43-4c56-a41e-21a8c071d2cc" name="IdInmueble" type="Int32" label="IdInmueble : Int32" nullable="true" kind="Persistent" fieldName="idInmueble" />
+      <Property Id="cf9f0638-d486-4ac2-b772-c6c535f0f6c4" name="IdTipoOperacion" type="Int32" label="IdTipoOperacion : Int32" nullable="true" kind="Persistent" fieldName="idTipoOperacion" />
+      <AssociationTargets>
+        <Association Id="5562ea96-20e0-419f-bcff-11525df61632" SourceMultiplicity="ZeroOne" name="Inmueble_TipoOperacionHasInmueble">
+          <DomainClassMoniker name="/ModeloDeDominio/Inmueble" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="d9b7df6e-a0fc-41d7-a850-33cd9661ab2a">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Inmueble/Inmueble_TipoOperacions" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="9a2c8fe0-6ae2-4338-b009-f999871df3fa">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Inmueble_TipoOperacion/Inmueble" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="24dba0af-3244-4fc0-ba63-890f1d882d2e" SourceMultiplicity="ZeroOne" name="Inmueble_TipoOperacionHasTipoOperacion">
+          <DomainClassMoniker name="/ModeloDeDominio/TipoOperacion" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="fe87e0a8-10a1-4c45-8860-97a3232cc302">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/TipoOperacion/Inmueble_TipoOperacions" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="4a21b92a-6daf-49f3-a965-227a9faf5d07">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Inmueble_TipoOperacion/TipoOperacion" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="2ba09959-6b57-4431-a90b-77737d35341a">
+          <NavigationalProperty Id="1aa4ef50-058e-4d34-85c2-84b1ffedd657" name="Inmueble" type="Inmueble" label="Inmueble : Inmueble" nullable="true" kind="Persistent" fieldName="inmueble" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="5f6b9385-20ef-4631-86c3-b8bf58458b95">
+          <NavigationalProperty Id="d08af014-1b88-4a94-ab00-63b35852a335" name="TipoOperacion" type="TipoOperacion" label="TipoOperacion : TipoOperacion" nullable="true" kind="Persistent" fieldName="tipoOperacion" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="2aa50792-b0a0-4dbb-8d40-47ac57421771" name="Inmueble_Caracteristica" namespace="CapaDominio" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="IdInmueble_Caracteristica">
+      <Property Id="11775cbb-fc72-4a17-9b3d-c8030f224b49" name="IdInmueble_Caracteristica" type="Int32" label="IdInmueble_Caracteristica : Int32" kind="Persistent" identity="true" fieldName="idInmueble_Caracteristica" />
+      <Property Id="a8856987-f37a-4d91-83dd-1b3a990e6507" name="IdInmueble" type="Int32" label="IdInmueble : Int32" nullable="true" kind="Persistent" fieldName="idInmueble" />
+      <Property Id="6bc091e9-8a46-46fc-a547-af816154ac1c" name="IdTipoCaracteristica" type="Int32" label="IdTipoCaracteristica : Int32" nullable="true" kind="Persistent" fieldName="idTipoCaracteristica" />
+      <Property Id="97537692-ce13-4eca-9e84-89a5826a8a96" name="ValorMedida" type="Decimal" label="ValorMedida : Decimal" nullable="true" kind="Persistent" fieldName="valorMedida" />
+      <AssociationTargets>
+        <Association Id="61fe0801-0ab4-4fc9-af03-accdf6c84778" SourceMultiplicity="ZeroOne" name="Inmueble_CaracteristicaHasInmueble">
+          <DomainClassMoniker name="/ModeloDeDominio/Inmueble" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="a3a21e8c-9251-47f7-8945-bc60cda65a97">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Inmueble/Inmueble_Caracteristicas" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="73288b9d-b056-4fd9-840f-d5b58cb1c0a7">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Inmueble_Caracteristica/Inmueble" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="7481f2a9-238a-4d14-9639-5fae50a509be" SourceMultiplicity="ZeroOne" name="Inmueble_CaracteristicaHasTipoCaracteristica">
+          <DomainClassMoniker name="/ModeloDeDominio/TipoCaracteristica" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="c6a33565-8282-4d4e-bb8f-410cf310bfdb">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/TipoCaracteristica/Inmueble_Caracteristicas" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="8302935c-a64d-4fda-a5b2-614b4c4e259f">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Inmueble_Caracteristica/TipoCaracteristica" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="c75a67c7-580b-4eec-bcb3-8b479cbcf76e">
+          <NavigationalProperty Id="96c600b4-c91c-4dc3-b7d3-42a7bbe944d3" name="Inmueble" type="Inmueble" label="Inmueble : Inmueble" nullable="true" kind="Persistent" fieldName="inmueble" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="d7afd383-6a16-48fc-b89f-1efd9bc2470a">
+          <NavigationalProperty Id="a6495a57-9fa1-4d6b-a63e-e391f1ac62ea" name="TipoCaracteristica" type="TipoCaracteristica" label="TipoCaracteristica : TipoCaracteristica" nullable="true" kind="Persistent" fieldName="tipoCaracteristica" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="52c05e45-ff72-4a37-b2fe-f352cd8d214a" name="Inmueble_Ambiente" namespace="CapaDominio" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="IdInmueble_Ambiente">
+      <Property Id="819e1e43-9963-4df9-acbb-7beff4385a09" name="IdInmueble_Ambiente" type="Int32" label="IdInmueble_Ambiente : Int32" kind="Persistent" identity="true" fieldName="idInmueble_Ambiente" />
+      <Property Id="65d91b2b-e346-4627-8a29-d92b9fe52dd5" name="Cantidad" type="Int32" label="Cantidad : Int32" nullable="true" kind="Persistent" fieldName="cantidad" />
+      <Property Id="222d21ff-379b-4c91-a736-02240bd691cf" name="IdInmueble" type="Int32" label="IdInmueble : Int32" nullable="true" kind="Persistent" fieldName="idInmueble" />
+      <Property Id="4c47c5f5-f77d-4641-9dc8-10173c305ecd" name="IdTipoAmbiente" type="Int32" label="IdTipoAmbiente : Int32" nullable="true" kind="Persistent" fieldName="idTipoAmbiente" />
+      <AssociationTargets>
+        <Association Id="0bd6ec07-22c9-4e79-9954-b9ab28e59ec1" SourceMultiplicity="ZeroOne" name="Inmueble_AmbienteHasInmueble">
+          <DomainClassMoniker name="/ModeloDeDominio/Inmueble" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="3f9e20ce-c135-474a-adea-b3d647ef21e4">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Inmueble/Inmueble_Ambientes" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="8893374d-0de8-4029-a145-39ea97a01f1e">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Inmueble_Ambiente/Inmueble" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="1668764e-5c0f-4976-975a-0645c974edac" SourceMultiplicity="ZeroOne" name="Inmueble_AmbienteHasTipoAmbiente">
+          <DomainClassMoniker name="/ModeloDeDominio/TipoAmbiente" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="4e4768da-905a-472e-a9c9-665909fcfc92">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/TipoAmbiente/Inmueble_Ambientes" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="907dc93b-c34c-4ea0-b61c-2c6528039100">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Inmueble_Ambiente/TipoAmbiente" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="63b9a4c0-de8d-4449-8eb2-00a6ec3bcae7">
+          <NavigationalProperty Id="3754912b-6305-4350-b293-0bc8a52a7379" name="Inmueble" type="Inmueble" label="Inmueble : Inmueble" nullable="true" kind="Persistent" fieldName="inmueble" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="adb67b53-0bd6-48a7-9149-76971ce64e03">
+          <NavigationalProperty Id="7734d001-0590-43b6-9f3e-2de089ec8618" name="TipoAmbiente" type="TipoAmbiente" label="TipoAmbiente : TipoAmbiente" nullable="true" kind="Persistent" fieldName="tipoAmbiente" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="fb0eb300-11e0-4fb2-9143-d49bd4bc3321" name="Inmueble" namespace="CapaDominio" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="IdInmueble">
+      <Property Id="7f4a2fba-5852-4914-8c88-3f8987b42000" name="IdInmueble" type="Int32" label="IdInmueble : Int32" kind="Persistent" identity="true" fieldName="idInmueble" />
+      <Property Id="83c36bd7-871e-4c9c-aff4-b246371d986f" name="Descripcion" label="Descripcion : String" kind="Persistent" fieldName="descripcion" />
+      <Property Id="70152a39-7091-48d2-a154-a900a1cc7656" name="Direccion" type="Int32" label="Direccion : Int32" nullable="true" kind="Persistent" fieldName="direccion" />
+      <Property Id="cacaae62-0a67-494c-a3bc-97a4054bb10d" name="FechaPublicacion" type="DateTime" label="FechaPublicacion : DateTime" nullable="true" kind="Persistent" fieldName="fechaPublicacion" />
+      <Property Id="c065e781-9cbd-4225-b3c6-1799e7f255dc" name="IsDestacada" type="Boolean" label="IsDestacada : Boolean" nullable="true" kind="Persistent" fieldName="isDestacada" />
+      <Property Id="636a3e2b-98a2-4a73-8707-c0110f17f0f4" name="Moneda" type="Int32" label="Moneda : Int32" nullable="true" kind="Persistent" fieldName="moneda" />
+      <Property Id="af1eca55-a6ed-4bfd-a816-da63dcb152fe" name="TipoEstado" type="Int32" label="TipoEstado : Int32" nullable="true" kind="Persistent" fieldName="tipoEstado" />
+      <Property Id="685415c6-2219-4977-acf1-7b55c4db7f11" name="TipoInmueble" type="Int32" label="TipoInmueble : Int32" nullable="true" kind="Persistent" fieldName="tipoInmueble" />
+      <Property Id="d8ab364b-920b-43ae-9d93-8f9222e8ec8f" name="Titulo" label="Titulo : String" kind="Persistent" fieldName="titulo" />
+      <Property Id="0c091e99-bb1a-428b-97f4-75da533f25df" name="Usuario" type="Int32" label="Usuario : Int32" nullable="true" kind="Persistent" fieldName="usuario" />
+      <Property Id="f38eb7c5-ab03-4a31-bda9-ac96b8f8c35e" name="Valor" type="Decimal" label="Valor : Decimal" nullable="true" kind="Persistent" fieldName="valor" />
+      <AssociationTargets>
+        <Association Id="92fa0f5b-9377-48e7-a16a-84f594d6f82c" SourceMultiplicity="ZeroOne" name="InmuebleHasDireccion">
+          <DomainClassMoniker name="/ModeloDeDominio/Direccion" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="fcf45838-73da-4910-9f1b-ab2693fe80ce">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Direccion/Inmuebles" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="669a3fb2-83a9-41ff-986c-03323f3e8e6a">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Inmueble/Direccion1" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="4f95e7ae-6849-4845-a6e6-94d3a2caf424" SourceMultiplicity="ZeroOne" name="InmuebleHasMoneda">
+          <DomainClassMoniker name="/ModeloDeDominio/Moneda" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="700024af-399c-4c8c-979c-c1c020735232">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Moneda/Inmuebles" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="a134825d-973e-4406-8a4f-a70afdace211">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Inmueble/Moneda1" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="9f843d6f-cb44-47c9-a3ee-42dd4a03ee03" SourceMultiplicity="ZeroOne" name="InmuebleHasTipoEstado">
+          <DomainClassMoniker name="/ModeloDeDominio/TipoEstado" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="40a60d5a-5d6f-4798-88e0-22c0e5a6d536">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/TipoEstado/Inmuebles" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="1f986a96-bf63-4ddc-8405-4e54da79685d">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Inmueble/TipoEstado1" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="60e1654e-8361-43b7-8cb5-f811987e6108" SourceMultiplicity="ZeroOne" name="InmuebleHasTipoInmueble">
+          <DomainClassMoniker name="/ModeloDeDominio/TipoInmueble" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="4fa7f43c-2f94-4bb7-8297-8401d21ef73d">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/TipoInmueble/Inmuebles" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="5d89a499-93e9-423d-93c0-6795b67158b5">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Inmueble/TipoInmueble1" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="34905f63-d4bd-4a75-a563-065c8f4ef7cc" SourceMultiplicity="ZeroOne" name="InmuebleHasUsuario">
+          <DomainClassMoniker name="/ModeloDeDominio/Usuario" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="083568f3-3704-4702-bff7-5b5d935aaa4e">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Usuario/Inmuebles" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="ab1f7099-8086-416b-a456-1536ff4e6bc7">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Inmueble/Usuario1" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="b18026af-c72c-4010-ac3a-a15953e9689a">
+          <NavigationalProperty Id="08b18155-7833-404e-91ee-4b0bd67cc8e5" name="Inmueble_TipoOperacions" type="IList&lt;Inmueble_TipoOperacion&gt;" label="Inmueble_TipoOperacions : IList&lt;Inmueble_TipoOperacion&gt;" nullable="true" kind="Persistent" fieldName="inmueble_TipoOperacions" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="8e950064-9832-4b14-8bc0-3931f14013de">
+          <NavigationalProperty Id="27b6ebd9-54d6-466d-b5c7-866eadedd687" name="Inmueble_Caracteristicas" type="IList&lt;Inmueble_Caracteristica&gt;" label="Inmueble_Caracteristicas : IList&lt;Inmueble_Caracteristica&gt;" nullable="true" kind="Persistent" fieldName="inmueble_Caracteristicas" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="9922ed3f-546f-418d-acf8-7bdd066f3083">
+          <NavigationalProperty Id="be4f60bc-38a1-4bd9-8a59-2372093b377d" name="Inmueble_Ambientes" type="IList&lt;Inmueble_Ambiente&gt;" label="Inmueble_Ambientes : IList&lt;Inmueble_Ambiente&gt;" nullable="true" kind="Persistent" fieldName="inmueble_Ambientes" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="38fa0f16-3ca2-4c76-9f5b-3cbfc7a85854">
+          <NavigationalProperty Id="f160a5da-231a-4af3-b892-f3e23a33bd6d" name="Direccion1" type="Direccion" label="Direccion1 : Direccion" nullable="true" kind="Persistent" fieldName="direccion1" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="cf20e862-3c27-4841-9ebb-f93c410e8d09">
+          <NavigationalProperty Id="add46b05-7b72-4668-8ab2-60094bce2863" name="Moneda1" type="Moneda" label="Moneda1 : Moneda" nullable="true" kind="Persistent" fieldName="moneda1" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="bc126791-e6df-4a57-82f8-82816645262b">
+          <NavigationalProperty Id="9cbcee50-5059-4402-bea9-679d4c9cc85d" name="TipoEstado1" type="TipoEstado" label="TipoEstado1 : TipoEstado" nullable="true" kind="Persistent" fieldName="tipoEstado1" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="f675802c-6706-43bc-b1c7-aba31dc6ad35">
+          <NavigationalProperty Id="2d3111bd-ec28-4abd-b503-4f15f0330c86" name="TipoInmueble1" type="TipoInmueble" label="TipoInmueble1 : TipoInmueble" nullable="true" kind="Persistent" fieldName="tipoInmueble1" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="ee8ef2fd-1667-437c-ae27-36dbc45c259f">
+          <NavigationalProperty Id="747089b1-b45c-441b-ac33-a18fde4be076" name="Usuario1" type="Usuario" label="Usuario1 : Usuario" nullable="true" kind="Persistent" fieldName="usuario1" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="f7122250-e20b-4014-93a9-9b0089f42dd8">
+          <NavigationalProperty Id="2c218e76-41f4-4f7e-acc3-439500bc28a1" name="Imagens" type="IList&lt;Imagen&gt;" label="Imagens : IList&lt;Imagen&gt;" nullable="true" kind="Persistent" fieldName="imagens" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="d784d80f-64c2-46af-afa6-30bc2401a534" name="Imagen" namespace="CapaDominio" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="IdImagen">
+      <Property Id="ecf06ea2-079e-4437-b402-24eced35eced" name="IdImagen" type="Int32" label="IdImagen : Int32" kind="Persistent" identity="true" fieldName="idImagen" />
+      <Property Id="10d95638-b7fe-4dae-a25f-61d38cfe2ae8" name="Inmueble" type="Int32" label="Inmueble : Int32" nullable="true" kind="Persistent" fieldName="inmueble" />
+      <Property Id="a2375eaf-c7fa-4403-8bf8-55c376f7a065" name="LinkImagen" label="LinkImagen : String" kind="Persistent" fieldName="linkImagen" />
+      <AssociationTargets>
+        <Association Id="90f90ca9-e830-4b57-839d-68fb610c9aea" SourceMultiplicity="ZeroOne" name="ImagenHasInmueble">
+          <DomainClassMoniker name="/ModeloDeDominio/Inmueble" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="2330e6d8-d172-4013-8577-73acaaf3ef64">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Inmueble/Imagens" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="6a46a4a2-7b14-42d7-874a-201cadc3a551">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Imagen/Inmueble1" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="93cc510d-ab2f-4c65-a1f5-3421edf771f2">
+          <NavigationalProperty Id="a7d8e20b-a5d0-4286-935e-067de4040a08" name="Inmueble1" type="Inmueble" label="Inmueble1 : Inmueble" nullable="true" kind="Persistent" fieldName="inmueble1" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="657dc818-986b-48de-ae54-29e1e4de9434" name="Direccion" namespace="CapaDominio" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="IdDireccion">
+      <Property Id="d4f6c925-d960-4adf-af2c-27c4d1ea07da" name="IdDireccion" type="Int32" label="IdDireccion : Int32" kind="Persistent" identity="true" fieldName="idDireccion" />
+      <Property Id="094ae741-d14d-4af1-be4d-c7cbb072fc82" name="Calle" label="Calle : String" kind="Persistent" fieldName="calle" />
+      <Property Id="1f736e0e-e6e9-4b9f-bbe5-ed2731e37052" name="Departamento" label="Departamento : String" kind="Persistent" fieldName="departamento" />
+      <Property Id="55147247-60c8-4688-a020-9e8fb3ef0b78" name="Localidad" type="Int32" label="Localidad : Int32" nullable="true" kind="Persistent" fieldName="localidad" />
+      <Property Id="6ab34391-bef7-4e94-a43b-d66ee29587dd" name="Numero" type="Int32" label="Numero : Int32" nullable="true" kind="Persistent" fieldName="numero" />
+      <Property Id="d83ae543-8b90-4712-86e8-aa1165cef5af" name="Piso" type="Int32" label="Piso : Int32" nullable="true" kind="Persistent" fieldName="piso" />
+      <AssociationTargets>
+        <Association Id="800e0705-3a31-463c-8af3-3affd1d64d8c" SourceMultiplicity="ZeroOne" name="DireccionHasLocalidad">
+          <DomainClassMoniker name="/ModeloDeDominio/Localidad" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="d4b221ed-368b-478d-894c-6c04b0390df4">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Localidad/Direccions" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="fc6dc4b8-b30b-447b-b5e7-ab80e2afd59b">
+              <NavigationalPropertyMoniker name="/ModeloDeDominio/Direccion/Localidad1" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="a9067408-80c0-48c0-976a-82676cde1da7">
+          <NavigationalProperty Id="42adc593-6e9b-47d7-a155-6df9864073a6" name="Inmuebles" type="IList&lt;Inmueble&gt;" label="Inmuebles : IList&lt;Inmueble&gt;" nullable="true" kind="Persistent" fieldName="inmuebles" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="79f35800-ae4f-4e2f-8473-4053b6b3440d">
+          <NavigationalProperty Id="bf1a6fcc-b0e1-4ffa-98b4-3abd36372451" name="Localidad1" type="Localidad" label="Localidad1 : Localidad" nullable="true" kind="Persistent" fieldName="localidad1" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+  </Types>
+  <domainContext>
+    <domainModelHasDomainContext Id="42838486-f44c-4e74-93b9-49fe4531c941">
+      <domainContainer name="ModeloDeDominio" namespace="CapaDominio" showPropertiesCompartment="true">
+        <entitySetProperty name="Usuarios" namespace="CapaDominio" type="Usuario" label="Usuarios : IQueryable&lt;CapaDominio.Usuario&gt;" />
+        <entitySetProperty name="TipoOperacions" namespace="CapaDominio" type="TipoOperacion" label="TipoOperacions : IQueryable&lt;CapaDominio.TipoOperacion&gt;" />
+        <entitySetProperty name="TipoInmuebles" namespace="CapaDominio" type="TipoInmueble" label="TipoInmuebles : IQueryable&lt;CapaDominio.TipoInmueble&gt;" />
+        <entitySetProperty name="TipoEstados" namespace="CapaDominio" type="TipoEstado" label="TipoEstados : IQueryable&lt;CapaDominio.TipoEstado&gt;" />
+        <entitySetProperty name="TipoCaracteristicas" namespace="CapaDominio" type="TipoCaracteristica" label="TipoCaracteristicas : IQueryable&lt;CapaDominio.TipoCaracteristica&gt;" />
+        <entitySetProperty name="TipoAmbientes" namespace="CapaDominio" type="TipoAmbiente" label="TipoAmbientes : IQueryable&lt;CapaDominio.TipoAmbiente&gt;" />
+        <entitySetProperty name="Rol_Permisos" namespace="CapaDominio" type="Rol_Permiso" label="Rol_Permisos : IQueryable&lt;CapaDominio.Rol_Permiso&gt;" />
+        <entitySetProperty name="Rols" namespace="CapaDominio" type="Rol" label="Rols : IQueryable&lt;CapaDominio.Rol&gt;" />
+        <entitySetProperty name="Provincia" namespace="CapaDominio" type="Provincium" label="Provincia : IQueryable&lt;CapaDominio.Provincium&gt;" />
+        <entitySetProperty name="Permisos" namespace="CapaDominio" type="Permiso" label="Permisos : IQueryable&lt;CapaDominio.Permiso&gt;" />
+        <entitySetProperty name="Monedas" namespace="CapaDominio" type="Moneda" label="Monedas : IQueryable&lt;CapaDominio.Moneda&gt;" />
+        <entitySetProperty name="Localidads" namespace="CapaDominio" type="Localidad" label="Localidads : IQueryable&lt;CapaDominio.Localidad&gt;" />
+        <entitySetProperty name="Inmueble_TipoOperacions" namespace="CapaDominio" type="Inmueble_TipoOperacion" label="Inmueble_TipoOperacions : IQueryable&lt;CapaDominio.Inmueble_TipoOperacion&gt;" />
+        <entitySetProperty name="Inmueble_Caracteristicas" namespace="CapaDominio" type="Inmueble_Caracteristica" label="Inmueble_Caracteristicas : IQueryable&lt;CapaDominio.Inmueble_Caracteristica&gt;" />
+        <entitySetProperty name="Inmueble_Ambientes" namespace="CapaDominio" type="Inmueble_Ambiente" label="Inmueble_Ambientes : IQueryable&lt;CapaDominio.Inmueble_Ambiente&gt;" />
+        <entitySetProperty name="Inmuebles" namespace="CapaDominio" type="Inmueble" label="Inmuebles : IQueryable&lt;CapaDominio.Inmueble&gt;" />
+        <entitySetProperty name="Imagens" namespace="CapaDominio" type="Imagen" label="Imagens : IQueryable&lt;CapaDominio.Imagen&gt;" />
+        <entitySetProperty name="Direccions" namespace="CapaDominio" type="Direccion" label="Direccions : IQueryable&lt;CapaDominio.Direccion&gt;" />
+      </domainContainer>
+    </domainModelHasDomainContext>
+  </domainContext>
+</DomainModel>
